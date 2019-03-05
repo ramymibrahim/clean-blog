@@ -1,10 +1,8 @@
 <?php
   $base_url="/clean-blog";
-  $categories=[
-    ["id"=>1,"name"=>"Sports"],    
-    ["id"=>2,"name"=>"Politics"],
-    ["id"=>3,"name"=>"Fashions"],
-  ];
+  require_once 'helpers/categories.php';
+
+  $cat=getCategories();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,8 +50,8 @@
               <a class="dropdown-item" href="<?php echo $base_url;?>">All</a>
               <div class="dropdown-divider"></div>
               <?php
-                foreach ($categories as $cat){
-                  echo '<a class="dropdown-item" href="'.$base_url.'/categories.php?id='.$cat['id'].'">'.$cat['name'].'</a>';
+                foreach ($cat as $cats){
+                  echo '<a class="dropdown-item" href="'.$base_url.'/categories.php?id='.$cats['id'].'">'.$cats['name'].'</a>';
                 }
               ?>                                          
             </div>
@@ -68,16 +66,26 @@
       </div>
     </div>
   </nav>
-
+<?php 
+  if(!isset($head_img)){
+    $head_img='img/home-bg.jpg';
+  }
+  if(!isset($head_title)){
+    $head_title='Clean Blog';
+  }
+  if(!isset($head_subtitle)){
+    $head_subtitle='A Blog Theme by Start Bootstrap';
+  }
+?>
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('<?php echo $head_img;?>')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1>Clean Blog</h1>
-            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+            <h1><?php echo $head_title;?></h1>
+            <span class="subheading"><?php echo $head_subtitle;?></span>
           </div>
         </div>
       </div>
