@@ -1,6 +1,4 @@
 <?php 
-session_start();
-var_dump($_SESSION['user']['is_admin']);
 require_once 'layouts/header.php';
 require_once 'helpers/posts.php';
 $posts=getPosts();

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once 'session.php';
 require_once 'database.php';
 function checkUser($username,$password){
     $q="SELECT * from users where username='$username' and password='$password'";

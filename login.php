@@ -2,11 +2,12 @@
 require_once 'helpers/users.php';
 if(isset($_POST['username']) && isset($_POST['password'])){
   if(checkUser($_POST['username'],$_POST['password'])){
-    echo 'Success';
+    header('Location:index.php');
+    die();
   }
   else{
-    echo 'Fail';
-  }  
+    $error='Please enter valid username and password';
+  }
 }
 
 require_once('layouts/header.php');
@@ -22,6 +23,14 @@ require_once('layouts/header.php');
           <input class="form-control" type="password" placeholder="Password" name="password" />
           <button class="btn btn-primary" type="submit" name="submit">Login</button>
           </form>
+          <?php
+          if(isset($error)){
+?>
+<div class="alert alert-danger"><?php echo $error;?></div>
+<?php
+          }
+          ?>
+          
         </div>
       </div>
     </div>
