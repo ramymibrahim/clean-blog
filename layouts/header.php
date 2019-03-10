@@ -1,8 +1,11 @@
 <?php
+//Add base url for images,css and js files
+//Add Base dir for include or require
 $base_url = "/clean-blog";
-require_once 'helpers/session.php';
-$loggedIn = ($user!=null);
-require_once 'helpers/categories.php';
+$base_dir = $_SERVER["DOCUMENT_ROOT"].'/clean-blog';
+require_once $base_dir.'/helpers/session.php';
+$loggedIn = ($user != null);
+require_once $base_dir.'/helpers/categories.php';
 
 $cat = getCategories();
 ?>
@@ -19,15 +22,15 @@ $cat = getCategories();
   <title>Clean Blog - Native PHP - AMIT Project</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo $base_url?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="<?php echo $base_url?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
   <!-- Custom styles for this template -->
-  <link href="css/clean-blog.min.css" rel="stylesheet">
+  <link href="<?php echo $base_url?>/css/clean-blog.min.css" rel="stylesheet">
 
 </head>
 
@@ -71,6 +74,23 @@ if (!$loggedIn) {
           </li>
           <?php
 } else {
+    if ($user['is_author']) {
+        ?>
+
+<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Author</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="admin/posts.php">Posts</a>
+              </div>
+              </li>
+
+
+<?php
+}
+    if ($user['is_admin']) {
+        ?>
+<?php
+}
     ?>
             <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
@@ -84,7 +104,7 @@ if (!$loggedIn) {
   </nav>
 <?php
 if (!isset($head_img)) {
-    $head_img = 'img/home-bg.jpg';
+    $head_img = $base_url.'/img/home-bg.jpg';
 }
 if (!isset($head_title)) {
     $head_title = 'Clean Blog';
