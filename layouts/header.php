@@ -70,7 +70,7 @@ if (!$loggedIn) {
             <a class="nav-link" href="login.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="register.php">Register</a>
+            <a class="nav-link" href="<?php echo $base_url?>/register.php">Register</a>
           </li>
           <?php
 } else {
@@ -80,7 +80,7 @@ if (!$loggedIn) {
 <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Author</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="admin/posts.php">Posts</a>
+              <a class="dropdown-item" href="<?php echo $base_url?>/admin/posts.php">Posts</a>
               </div>
               </li>
 
@@ -93,7 +93,7 @@ if (!$loggedIn) {
 }
     ?>
             <li class="nav-item">
-            <a class="nav-link" href="logout.php">Logout</a>
+            <a class="nav-link" href="<?php echo $base_url?>/logout.php">Logout</a>
           </li>
             <?php
 }

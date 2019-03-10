@@ -13,7 +13,7 @@ function getPosts($cat_id=null){
 }
 
 function getPost($id){
-    $q="SELECT posts.id,title,content,posts.image,created_at as posted_at
+    $q="SELECT posts.id,posts.category_id,title,content,posts.image,created_at as posted_at
     ,user_id,users.name as posted_by
     from posts inner join users on users.id=posts.user_id 
     WHERE posts.id=$id";
@@ -31,6 +31,17 @@ function insertPost($title,$content,$image,$category_id,$user_id){
     $q="INSERT INTO posts(id,title,content,image,category_id,user_id) values(
         null,'$title','$content','$image',$category_id,$user_id
     )";
+    return executeQuery($q);
+}
+
+function updatedPost($id,$title,$content,$image){
+    $q="UPDATE posts set title='$title',content='$content'
+    ,image='$image' WHERE id=$id;";     
+     return executeQuery($q);
+}
+
+function deletePost($id){
+    $q="delete from posts where id=$id";
     return executeQuery($q);
 }
 ?>
