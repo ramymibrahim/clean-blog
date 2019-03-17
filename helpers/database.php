@@ -1,7 +1,11 @@
 <?php
-function getRows($q){    
+function getConnection(){
     $con=mysqli_connect('localhost','root','','clean_blog');    
-    
+    mysqli_set_charset($con,"utf8");
+    return $con;
+}
+function getRows($q){    
+    $con=getConnection();
     $query=mysqli_query($con,$q);
     $rows=[];
     while($row=mysqli_fetch_array($query)){
@@ -12,7 +16,7 @@ function getRows($q){
 }
 
 function getRow($q){    
-    $con=mysqli_connect('localhost','root','','clean_blog');        
+    $con=getConnection();     
     $query=mysqli_query($con,$q);    
     $row=mysqli_fetch_array($query);    
     mysqli_close($con);
@@ -20,7 +24,7 @@ function getRow($q){
 }
 
 function executeQuery($q){
-    $con=mysqli_connect('localhost','root','','clean_blog');        
+    $con=getConnection();
     $query=mysqli_query($con,$q);
     return $query;
 }

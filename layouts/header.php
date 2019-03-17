@@ -89,6 +89,17 @@ if (!$loggedIn) {
 }
     if ($user['is_admin']) {
         ?>
+
+        
+<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<?php echo $base_url?>/admin/posts.php">Posts</a>
+            <a class="dropdown-item" href="<?php echo $base_url?>/admin/categories.php">Categories</a>
+            <a class="dropdown-item" href="<?php echo $base_url?>/admin/users.php">Users</a>
+              </div>
+              </li>
+
 <?php
 }
     ?>
